@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <listeners>
+        <listener class-name="com.scharco.Utilities.Listeners"/>
+    </listeners>
+
+    <test name="Add New Functionality">
+        <classes>
+            <class name="com.scharco.TestCases.UserManagement002">
+                <methods>
+                    <include name="TestCase002_UserManagement"/>
+                </methods>
+            </class>
+            <class name="com.scharco.TestCases.RoleManagement003">
+                <methods>
+                    <include name="TestCase003_RoleManagement"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
