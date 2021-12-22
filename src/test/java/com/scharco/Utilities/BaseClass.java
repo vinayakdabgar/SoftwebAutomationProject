@@ -28,12 +28,12 @@ public class BaseClass {
 
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("start-maximized");
-        /*
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver(chromeOptions);
-        */
+        /*
         System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/Drivers/chromedriver.exe");
         webDriver = new ChromeDriver(chromeOptions);
+        */
         webDriver.get(url);
     }
 
