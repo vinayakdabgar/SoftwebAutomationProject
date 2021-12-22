@@ -18,6 +18,11 @@
                     <include name="TestCase003_RoleManagement"/>
                 </methods>
             </class>
+            <class name="com.scharco.TestCases.Dashboard005">
+                <methods>
+                    <include name="TestCase005_Dashboard"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
