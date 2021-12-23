@@ -8,6 +8,11 @@
 
     <test name="Add New Functionality">
         <classes>
+            <class name="com.scharco.TestCases.Dashboard005">
+                <methods>
+                    <include name="TestCase005_Dashboard"/>
+                </methods>
+            </class>
             <class name="com.scharco.TestCases.UserManagement002">
                 <methods>
                     <include name="TestCase002_UserManagement"/>
