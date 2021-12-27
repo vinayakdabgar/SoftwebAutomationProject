@@ -23,6 +23,11 @@
                     <include name="TestCase003_RoleManagement"/>
                 </methods>
             </class>
+            <class name="com.scharco.TestCases.FirmwareManagementTestCase006">
+                <methods>
+                    <include name="TestCase006_FirmwareManagement"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
