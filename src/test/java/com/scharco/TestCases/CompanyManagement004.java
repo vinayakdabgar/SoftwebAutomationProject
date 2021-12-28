@@ -8,13 +8,11 @@ import java.io.IOException;
 
 public class CompanyManagement004 extends BaseClass {
 
-
     @Test
     public void TestCase004_CompanyManagement() throws InterruptedException, IOException {
 
         CompanyManagementFunctions companyManagementFunctions = new CompanyManagementFunctions(webDriver);
         companyManagementFunctions.addCompany();
         companyManagementFunctions.deleteCompany();
-
     }
 }

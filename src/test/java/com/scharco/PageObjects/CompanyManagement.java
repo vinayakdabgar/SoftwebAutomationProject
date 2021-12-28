@@ -78,6 +78,11 @@ public class CompanyManagement extends BaseClass {
     @FindBy(xpath = "//button[@class='mat-focus-indicator btn btn-orange mat-button mat-button-base']")
     WebElement clickOnOKButtonDelete;
 
+    public void selectStateFromDropdown(String stateName)
+    {
+        webDriver.findElement(By.xpath("//span[normalize-space()=\""+stateName+"\"]")).click();
+    }
+
     public WebElement getCompanyNameMenu() {
         return companyNameMenu;
     }

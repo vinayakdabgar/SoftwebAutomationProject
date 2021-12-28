@@ -27,6 +27,7 @@ public class CompanyManagementFunctions extends BaseClass {
         String listOfCountryName = propertiesRead.readProperties("country");
 
         String listOfMarketName = propertiesRead.readProperties("market");
+        String buttonSubmit = propertiesRead.readProperties("submitButton");
         LoginPageFunctions loginPageFunctions = new LoginPageFunctions(webDriver);
         CompanyManagement companyManagement = new CompanyManagement(webDriver);
 
@@ -88,7 +89,7 @@ public class CompanyManagementFunctions extends BaseClass {
         }
         Thread.sleep(3000);
         companyManagement.getStateTextBox().click();
-        webDriver.findElement(By.xpath("//span[normalize-space()='Gujarat']")).click();
+        companyManagement.selectStateFromDropdown("Gujarat");
 
         companyManagement.getMarketSegmentTextBox().click();
         companyManagement.selectMarketSegment(CompanyManagementData.marketSegment);
@@ -108,22 +109,19 @@ public class CompanyManagementFunctions extends BaseClass {
         }
 
         Thread.sleep(1000);
-        WebElement element = companyManagement.getClickOnSubmit();
-        JavascriptExecutor executor = (JavascriptExecutor)webDriver;
-        executor.executeScript("arguments[0].click();", element);
+        webDriver.findElement(By.xpath(buttonSubmit)).click();
         waitForLoadingIconDisappear();
-
 }
-    public void deleteCompany() throws InterruptedException {
+    public void deleteCompany() throws InterruptedException, IOException {
         CompanyManagement companyManagement = new CompanyManagement(webDriver);
+        String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
 
         for (WebElement emailData : companyManagement.getAllEmailColumn())
         {
-            System.out.println("emails" +emailData.getText());
             if(emailData.getText().contains(CompanyManagementData.companyEmail))
             {
                 companyManagement.clickOnDeleteButton(CompanyManagementData.companyEmail);
-                webDriver.findElement(By.xpath("//span[normalize-space()='OK']")).click();
+                webDriver.findElement(By.xpath(buttonOkDelete)).click();
                 Thread.sleep(2000);
                 break;
             }
