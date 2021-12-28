@@ -7,7 +7,7 @@ public class CompanyManagementData {
     public static final String companyEmail = "genepool@genepool.com";
     public static final String firstName = "admin";
     public static final String lastName = "admin";
-    public static final String companyContact = "adminuser";
+    public static final String companyContact = "10203000200";
     public static final String address = "101 street";
     public static final String country = "India";
     public static final String state = "Gujarat";

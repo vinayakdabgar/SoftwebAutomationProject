@@ -28,6 +28,11 @@
                     <include name="TestCase006_FirmwareManagement"/>
                 </methods>
             </class>
+            <class name="com.scharco.TestCases.CompanyManagement004">
+                <methods>
+                    <include name="TestCase004_CompanyManagement"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
