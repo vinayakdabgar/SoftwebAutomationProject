@@ -25,51 +25,64 @@ public class CompanyManagementFunctions extends BaseClass {
     }
     public void addCompany() throws InterruptedException, IOException {
         String listOfCountryName = propertiesRead.readProperties("country");
-
         String listOfMarketName = propertiesRead.readProperties("market");
-        String buttonSubmit = propertiesRead.readProperties("submitButton");
+        String buttonSubmit = propertiesRead.readProperties("clickOnSubmit");
         LoginPageFunctions loginPageFunctions = new LoginPageFunctions(webDriver);
         CompanyManagement companyManagement = new CompanyManagement(webDriver);
+        String companyMenu = propertiesRead.readProperties("companyNameMenu");
+        String newCompanyButton = propertiesRead.readProperties("createNewCompanyButton");
+        String companyName = propertiesRead.readProperties("companyNameTextBox");
+        String companyEmail = propertiesRead.readProperties("companyEmailTextBox");
+        String firstName = propertiesRead.readProperties("firstNameTextBox");
+        String lastName= propertiesRead.readProperties("lastNameTextBox");
+        String companyContact= propertiesRead.readProperties("companyContactTextBox");
+        String address= propertiesRead.readProperties("addressTextBox");
+        String city= propertiesRead.readProperties("cityTextBox");
+        String noOfDevices= propertiesRead.readProperties("noOfDevicesTextBox");
+        String msgPerMonthPerDevice= propertiesRead.readProperties("msgPerMonthPerDeviceNameTextBox");
+        String totalMessage= propertiesRead.readProperties("msgTotalPerMonthTextBox");
+        String sageCompanyID= propertiesRead.readProperties("sageIdTextBox");
+
 
         loginPageFunctions.loginFunction();
         waitForLoadingIconDisappear();
-        companyManagement.getCompanyNameMenu().click();
+        webDriver.findElement(By.xpath(companyMenu)).click();
         waitForLoadingIconDisappear();
-        companyManagement.getCreateNewCompanyButton().click();
+        webDriver.findElement(By.xpath(newCompanyButton)).click();
         waitForLoadingIconDisappear();
 
-        companyManagement.getCompanyNameTextBox().click();
-        companyManagement.getCompanyNameTextBox().sendKeys(CompanyManagementData.companyName);
+        webDriver.findElement(By.xpath(companyName)).click();
+        webDriver.findElement(By.xpath(companyName)).sendKeys(CompanyManagementData.companyName);
 
-        companyManagement.getCompanyEmailTextBox().click();
-        companyManagement.getCompanyEmailTextBox().sendKeys(CompanyManagementData.companyEmail);
+        webDriver.findElement(By.xpath(companyEmail)).click();
+        webDriver.findElement(By.xpath(companyEmail)).sendKeys(CompanyManagementData.companyEmail);
 
-        companyManagement.getFirstNameTextBox().click();
-        companyManagement.getFirstNameTextBox().sendKeys(CompanyManagementData.firstName);
+        webDriver.findElement(By.xpath(firstName)).click();
+        webDriver.findElement(By.xpath(firstName)).sendKeys(CompanyManagementData.firstName);
 
-        companyManagement.getLastNameTextBox().click();
-        companyManagement.getLastNameTextBox().sendKeys(CompanyManagementData.lastName);
+        webDriver.findElement(By.xpath(lastName)).click();
+        webDriver.findElement(By.xpath(lastName)).sendKeys(CompanyManagementData.lastName);
 
-        companyManagement.getCompanyContactTextBox().click();
-        companyManagement.getCompanyContactTextBox().sendKeys(CompanyManagementData.companyContact);
+        webDriver.findElement(By.xpath(companyContact)).click();
+        webDriver.findElement(By.xpath(companyContact)).sendKeys(CompanyManagementData.companyContact);
 
-        companyManagement.getAddressTextBox().click();
-        companyManagement.getAddressTextBox().sendKeys(CompanyManagementData.address);
+        webDriver.findElement(By.xpath(address)).click();
+        webDriver.findElement(By.xpath(address)).sendKeys(CompanyManagementData.address);
 
-        companyManagement.getCityTextBox().click();
-        companyManagement.getCityTextBox().sendKeys(CompanyManagementData.city);
+        webDriver.findElement(By.xpath(city)).click();
+        webDriver.findElement(By.xpath(city)).sendKeys(CompanyManagementData.city);
 
-        companyManagement.getNoOfDevicesTextBox().click();
-        companyManagement.getNoOfDevicesTextBox().sendKeys(CompanyManagementData.noOfDevices);
+        webDriver.findElement(By.xpath(noOfDevices)).click();
+        webDriver.findElement(By.xpath(noOfDevices)).sendKeys(CompanyManagementData.noOfDevices);
 
-        companyManagement.getMsgPerMonthPerDeviceNameTextBox().click();
-        companyManagement.getMsgPerMonthPerDeviceNameTextBox().sendKeys(CompanyManagementData.msgPerMonthPerDevice);
+        webDriver.findElement(By.xpath(msgPerMonthPerDevice)).click();
+        webDriver.findElement(By.xpath(msgPerMonthPerDevice)).sendKeys(CompanyManagementData.msgPerMonthPerDevice);
 
-        companyManagement.getMsgTotalPerMonthTextBox().click();
-        companyManagement.getMsgTotalPerMonthTextBox().sendKeys(CompanyManagementData.totalMessage);
+        webDriver.findElement(By.xpath(totalMessage)).click();
+        webDriver.findElement(By.xpath(totalMessage)).sendKeys(CompanyManagementData.totalMessage);
 
-        companyManagement.getSageIdTextBox().click();
-        companyManagement.getSageIdTextBox().sendKeys(CompanyManagementData.sageCompanyID);
+        webDriver.findElement(By.xpath(sageCompanyID)).click();
+        webDriver.findElement(By.xpath(sageCompanyID)).sendKeys(CompanyManagementData.sageCompanyID);
 
         companyManagement.getClickOnCountry().click();
         companyManagement.selectCountry(CompanyManagementData.country);
@@ -80,8 +93,8 @@ public class CompanyManagementFunctions extends BaseClass {
         {
             if(countryName.getText().equalsIgnoreCase(CompanyManagementData.country))
             {
-                String country = countryName.getText();
-                Assert.assertEquals(country, CompanyManagementData.country);
+                String country1 = countryName.getText();
+                Assert.assertEquals(country1, CompanyManagementData.country);
                 count++;
             } else {
                 System.out.println("Sorry!! Something wrong..");
