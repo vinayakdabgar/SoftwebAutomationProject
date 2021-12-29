@@ -46,7 +46,7 @@ public class BaseClass {
     public void waitForLoadingIconDisappear() throws InterruptedException {
         PageLoading pageLoading = new PageLoading(webDriver);
         int count = 0;
-        while (pageLoading.getLoadingIcon().size() != 0 && count<5){
+        while (pageLoading.getLoadingIcon().size() != 0 && count<8){
             Thread.sleep(1000);
             count++;
         }
