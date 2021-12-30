@@ -5,6 +5,7 @@ import com.scharco.PageData.NotificationData;
 import com.scharco.PageObjects.Filters;
 import com.scharco.Utilities.BaseClass;
 import com.scharco.Utilities.PropertiesRead;
+import com.scharco.Utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,7 @@ import java.util.List;
 public class DashboardFunctions extends BaseClass {
 
     WebDriver webDriver;
+    TestBase testBase = new TestBase();
     PropertiesRead propertiesRead = new PropertiesRead();
 
     public DashboardFunctions(WebDriver remoteDriver) {
@@ -41,7 +43,7 @@ public class DashboardFunctions extends BaseClass {
 
         loginPageFunctions.loginFunction();
         WebElement element = webDriver.findElement(By.xpath(headerNotificationText));
-        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
+        testBase.scrollPage(element);
         webDriver.findElement(By.xpath(linkViewAll)).click();
         waitForLoadingIconDisappear();
         String textNotificationList = webDriver.findElement(By.xpath(headerNotificationListText)).getText();

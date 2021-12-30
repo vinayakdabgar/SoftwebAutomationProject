@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="Scharco Test Suite">
 
     <listeners>
         <listener class-name="com.scharco.Utilities.Listeners"/>
     </listeners>
 
-    <test name="Add New Functionality">
+    <test name="Scharco Smoke Testcases">
         <classes>
             <class name="com.scharco.TestCases.Dashboard005">
                 <methods>
@@ -23,9 +23,11 @@
                     <include name="TestCase003_RoleManagement"/>
                 </methods>
             </class>
-            <class name="com.scharco.TestCases.FirmwareManagementTestCase006">
+            <class name="com.scharco.TestCases.FirmwareAndOTAUpdateTestCase006">
                 <methods>
                     <include name="TestCase006_FirmwareManagement"/>
+                    <include name="TestCase008_AddOTAUpdates"/>
+                    <include name="TestCase007_DeleteFirmwareManagement"/>
                 </methods>
             </class>
             <class name="com.scharco.TestCases.CompanyManagement004">

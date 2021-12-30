@@ -17,5 +17,7 @@ public class CompanyManagementData {
     public static final String msgPerMonthPerDevice = "100";
     public static final String totalMessage = "1000";
     public static final String sageCompanyID = "102030";
+    public static final String toastSuccessMessage = "";
+    public static final String toastDeleteMessage = "";
 
 }
