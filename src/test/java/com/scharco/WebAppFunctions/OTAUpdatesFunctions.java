@@ -61,9 +61,7 @@ public class OTAUpdatesFunctions extends BaseClass {
         WebElement element = webDriver.findElement(By.xpath(buttonSubmitOTA));
         JavascriptExecutor executor = (JavascriptExecutor)webDriver;
         executor.executeScript("arguments[0].click();", element);
-        testBase.expWait(toastMessage);
-        String toastOTASuccessMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastOTASuccessMessage, OTAUpdatesPageData.toastSuccessMessage);
+        testBase.verifyToastMessage(toastMessage,OTAUpdatesPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
         webDriver.findElement(By.xpath(menuFirmware)).click();
         waitForLoadingIconDisappear();

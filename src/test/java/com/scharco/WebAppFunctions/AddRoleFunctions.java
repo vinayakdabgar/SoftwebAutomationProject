@@ -45,10 +45,7 @@ public class AddRoleFunctions extends BaseClass {
         webDriver.findElement(By.xpath(textBoxRoleDescription)).sendKeys(RoleManagementData.roleDescription);
         webDriver.findElement(By.xpath(selectAllCheckBox)).click();
         webDriver.findElement(By.xpath(buttonSubmit)).click();
-        testBase.expWait(toastMessage);
-        String toastSuccessMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        System.out.println("toastSuccessMessage :"+toastSuccessMessage);
-        Assert.assertEquals(toastSuccessMessage, RoleManagementData.toastSuccessMessage);
+        testBase.verifyToastMessage(toastMessage,RoleManagementData.toastSuccessMessage);
         waitForLoadingIconDisappear();
     }
 
@@ -71,8 +68,6 @@ public class AddRoleFunctions extends BaseClass {
                 break;
             }
         }
-        testBase.expWait(toastMessage);
-        String toastDeleteMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastDeleteMessage,RoleManagementData.toastDeleteMessage);
+        testBase.verifyToastMessage(toastMessage,RoleManagementData.toastDeleteMessage);
     }
 }

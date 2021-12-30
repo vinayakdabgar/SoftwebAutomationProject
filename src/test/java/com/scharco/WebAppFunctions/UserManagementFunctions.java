@@ -1,5 +1,6 @@
 package com.scharco.WebAppFunctions;
 
+import com.scharco.PageData.OTAUpdatesPageData;
 import com.scharco.PageData.UserManagementPageData;
 import com.scharco.PageObjects.UserManagement;
 import com.scharco.Utilities.BaseClass;
@@ -57,9 +58,7 @@ public class UserManagementFunctions extends BaseClass {
         WebElement element = userManagement.getClickOnSubmit();
         JavascriptExecutor executor = (JavascriptExecutor)webDriver;
         executor.executeScript("arguments[0].click();", element);
-        testBase.expWait(toastMessage);
-        String toastSuccessMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastSuccessMessage,UserManagementPageData.toastSuccessMessage);
+        testBase.verifyToastMessage(toastMessage, UserManagementPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
     }
 
@@ -78,8 +77,6 @@ public class UserManagementFunctions extends BaseClass {
                 break;
             }
         }
-        testBase.expWait(toastMessage);
-        String toastDeleteMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastDeleteMessage,UserManagementPageData.toastDeleteMessage);
+        testBase.verifyToastMessage(toastMessage, UserManagementPageData.toastDeleteMessage);
     }
 }

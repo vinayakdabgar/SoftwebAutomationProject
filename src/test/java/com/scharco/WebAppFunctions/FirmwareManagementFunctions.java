@@ -1,6 +1,7 @@
 package com.scharco.WebAppFunctions;
 
 import com.scharco.PageData.FirmwareManagementPageData;
+import com.scharco.PageData.RoleManagementData;
 import com.scharco.PageObjects.FirmwareManagement;
 import com.scharco.Utilities.BaseClass;
 import com.scharco.Utilities.FileUpload;
@@ -60,9 +61,7 @@ public class FirmwareManagementFunctions extends BaseClass {
         webDriver.findElement(By.xpath(textAreaSWDescription)).sendKeys(FirmwareManagementPageData.softwareDescription);
 
         webDriver.findElement(By.xpath(buttonSubmitFirmware)).click();
-        testBase.expWait(toastMessage);
-        String toastFirmwareSuccessMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastFirmwareSuccessMessage, FirmwareManagementPageData.toastSuccessMessage);
+        testBase.verifyToastMessage(toastMessage,FirmwareManagementPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
         releaseSoftwareVersion();
     }
@@ -78,9 +77,7 @@ public class FirmwareManagementFunctions extends BaseClass {
         firmwareManagement.clickOnReleaseSoftwareVersion(FirmwareManagementPageData.softwareVersion);
         waitForLoadingIconDisappear();
         webDriver.findElement(By.xpath(buttonOkDelete)).click();
-        testBase.expWait(toastMessage);
-        String toastSuccessSWPublishMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastSuccessSWPublishMessage,FirmwareManagementPageData.toastSuccessFirmwareSoftwarePublish);
+        testBase.verifyToastMessage(toastMessage,FirmwareManagementPageData.toastSuccessFirmwareSoftwarePublish);
         waitForLoadingIconDisappear();
     }
 
@@ -102,8 +99,6 @@ public class FirmwareManagementFunctions extends BaseClass {
                 break;
             }
         }
-        testBase.expWait(toastMessage);
-        String toastFirmwareDeleteMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastFirmwareDeleteMessage,FirmwareManagementPageData.toastDeleteMessage);
+        testBase.verifyToastMessage(toastMessage,FirmwareManagementPageData.toastDeleteMessage);
     }
 }
