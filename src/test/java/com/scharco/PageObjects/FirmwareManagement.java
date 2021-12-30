@@ -20,6 +20,16 @@ public class FirmwareManagement {
 
     public void clickOnFirmwareDeleteButton(String firmwareName)
     {
-        webDriver.findElement(By.xpath("//td[contains(text(),\""+firmwareName+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[3]//a")).click();
+        webDriver.findElement(By.xpath("//td[contains(text(),\""+firmwareName+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[2]//a")).click();
+    }
+
+    public void clickOnSoftwareUpgradeDraft(String firmwareName)
+    {
+        webDriver.findElement(By.xpath("//td[contains(text(),\""+firmwareName+"\")]//ancestor::td//following-sibling::td[4]//a")).click();
+    }
+
+    public void clickOnReleaseSoftwareVersion(String softwareVersion)
+    {
+        webDriver.findElement(By.xpath("//td[contains(text(),\""+softwareVersion+"\")]//ancestor::td//following-sibling::td[4]//ul//li[1]//a")).click();
     }
 }

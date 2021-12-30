@@ -52,12 +52,6 @@ public class BaseClass {
         }
     }
 
-    public void expWait(String data)
-    {
-        WebDriverWait wait = new WebDriverWait(webDriver,30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(data)));
-    }
-
     @AfterClass
     public void teardown(){
         webDriver.quit();

@@ -57,6 +57,20 @@ public class FirmwareManagementFunctions extends BaseClass {
 
         webDriver.findElement(By.xpath(buttonSubmitFirmware)).click();
         waitForLoadingIconDisappear();
+        releaseSoftwareVersion();
+    }
+
+    public void releaseSoftwareVersion() throws IOException, InterruptedException {
+
+        FirmwareManagement firmwareManagement = new FirmwareManagement(webDriver);
+        String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
+
+        firmwareManagement.clickOnSoftwareUpgradeDraft(FirmwareManagementPageData.firmwareName);
+        waitForLoadingIconDisappear();
+        firmwareManagement.clickOnReleaseSoftwareVersion(FirmwareManagementPageData.softwareVersion);
+        waitForLoadingIconDisappear();
+        webDriver.findElement(By.xpath(buttonOkDelete)).click();
+        waitForLoadingIconDisappear();
     }
 
     public void delFirmware() throws IOException, InterruptedException {

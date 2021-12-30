@@ -3,6 +3,7 @@ package com.scharco.WebAppFunctions;
 import com.scharco.PageData.LoginPageData;
 import com.scharco.Utilities.BaseClass;
 import com.scharco.Utilities.PropertiesRead;
+import com.scharco.Utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ public class LoginPageFunctions extends BaseClass {
 
     WebDriver webDriver;
     PropertiesRead propertiesRead = new PropertiesRead();
+    TestBase testBase = new TestBase();
 
     public LoginPageFunctions(WebDriver remoteDriver) {
         webDriver = remoteDriver;
@@ -36,7 +38,7 @@ public class LoginPageFunctions extends BaseClass {
         WebElement element = webDriver.findElement(By.xpath(buttonLogin));
         JavascriptExecutor executor = (JavascriptExecutor)webDriver;
         executor.executeScript("arguments[0].click();", element);
-        expWait(toggleDropdown);
+        testBase.expWait(toggleDropdown);
     }
 
     public void logoutFunctionality() throws IOException {
