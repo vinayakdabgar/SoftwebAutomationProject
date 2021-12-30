@@ -66,13 +66,14 @@ public class UserManagementFunctions extends BaseClass {
     public void deleteUser() throws InterruptedException, IOException {
         UserManagement userManagement = new UserManagement(webDriver);
         String toastMessage = propertiesRead.readProperties("toastMessage");
+        String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
 
         for (WebElement emailData : userManagement.getAllEmailColumn())
         {
             if(emailData.getText().contains(UserManagementPageData.emailAddress))
             {
                 userManagement.clickOnDeleteButton(UserManagementPageData.emailAddress);
-                webDriver.findElement(By.xpath("//span[normalize-space()='OK']")).click();
+                webDriver.findElement(By.xpath(buttonOkDelete)).click();
                 Thread.sleep(2000);
                 break;
             }
