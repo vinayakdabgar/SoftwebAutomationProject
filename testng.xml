@@ -33,6 +33,11 @@
                     <include name="TestCase004_CompanyManagement"/>
                 </methods>
             </class>
+            <class name="com.scharco.TestCases.RuleManagement007">
+                <methods>
+                    <include name="TestCase007_RuleManagement"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
