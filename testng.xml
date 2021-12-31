@@ -15,12 +15,16 @@
             </class>
             <class name="com.scharco.TestCases.UserManagement002">
                 <methods>
-                    <include name="TestCase002_UserManagement"/>
+                    <include name="TestCase002_AddUser"/>
+                    <include name="TestCase003_EditUser"/>
+                    <include name="TestCase004_DeleteUser"/>
                 </methods>
             </class>
             <class name="com.scharco.TestCases.RoleManagement003">
                 <methods>
-                    <include name="TestCase003_RoleManagement"/>
+                    <include name="TestCase001_AddRole"/>
+                    <include name="TestCase002_EditRole"/>
+                    <include name="TestCase003_DeleteRole"/>
                 </methods>
             </class>
             <class name="com.scharco.TestCases.FirmwareAndOTAUpdateTestCase006">

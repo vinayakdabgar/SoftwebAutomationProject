@@ -49,6 +49,34 @@ public class AddRoleFunctions extends BaseClass {
         waitForLoadingIconDisappear();
     }
 
+    public void editRole() throws IOException, InterruptedException {
+
+        RoleManagement roleManagement = new RoleManagement(webDriver);
+        String textBoxRoleName = propertiesRead.readProperties("roleName");
+        String textBoxRoleDescription = propertiesRead.readProperties("roleDescription");
+        String selectAllCheckBox = propertiesRead.readProperties("selectAllCheckBox");
+        String buttonSubmit = propertiesRead.readProperties("submitButton");
+        String toastMessage = propertiesRead.readProperties("toastMessage");
+
+        roleManagement.clickOnRoleEditButton(RoleManagementData.roleName);
+        waitForLoadingIconDisappear();
+
+        webDriver.findElement(By.xpath(textBoxRoleName)).clear();
+        webDriver.findElement(By.xpath(textBoxRoleName)).sendKeys(RoleManagementData.roleName + "Update");
+
+        webDriver.findElement(By.xpath(textBoxRoleDescription)).clear();
+        webDriver.findElement(By.xpath(textBoxRoleDescription)).sendKeys(RoleManagementData.roleDescription + "Update");
+
+        webDriver.findElement(By.xpath(selectAllCheckBox)).click();
+        roleManagement.selectPermissionCheckBox("Company Management","View");
+        Thread.sleep(1000);
+        roleManagement.selectPermissionCheckBox("Company Management","Manage");
+
+        webDriver.findElement(By.xpath(buttonSubmit)).click();
+        testBase.verifyToastMessage(toastMessage,RoleManagementData.toastUpdateMessage);
+        waitForLoadingIconDisappear();
+    }
+
     public void deleteRole() throws IOException, InterruptedException {
 
         RoleManagement roleManagement = new RoleManagement(webDriver);
@@ -60,9 +88,9 @@ public class AddRoleFunctions extends BaseClass {
         for(WebElement roles : listOfRoles)
         {
             System.out.println("roles"+roles.getText());
-            if(roles.getText().contains(RoleManagementData.roleName))
+            if(roles.getText().contains(RoleManagementData.roleName + "Update"))
             {
-                roleManagement.clickOnRoleDeleteButton(RoleManagementData.roleName);
+                roleManagement.clickOnRoleDeleteButton(RoleManagementData.roleName + "Update");
                 webDriver.findElement(By.xpath(buttonOkDelete)).click();
                 Thread.sleep(2000);
                 break;
