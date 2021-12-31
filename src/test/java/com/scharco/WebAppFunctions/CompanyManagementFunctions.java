@@ -49,6 +49,7 @@ public class CompanyManagementFunctions extends BaseClass {
         String sageCompanyID= propertiesRead.readProperties("sageIdTextBox");
         String toastMessage = propertiesRead.readProperties("toastMessage");
         String buttonBrowse = propertiesRead.readProperties("browseImageFile");
+        String buttonBrowse2 = propertiesRead.readProperties("browseAnyFile");
 
         loginPageFunctions.loginFunction();
         waitForLoadingIconDisappear();
@@ -129,12 +130,18 @@ public class CompanyManagementFunctions extends BaseClass {
         webDriver.findElement(By.xpath(buttonBrowse)).click();
         Thread.sleep(3000);
         FileUpload fileUpload = new FileUpload();
-        fileUpload.imageUpload("CompanyLogo.jpeg");
+        fileUpload.imageUpload("CompanyLogo.jpg");
+
+//        webDriver.findElement(By.xpath(buttonBrowse2)).click();
+//        Thread.sleep(3000);
+//        FileUpload fileUpload1 = new FileUpload();
+//        fileUpload1.imageUpload("CompanyTxt.txt");
 
         Thread.sleep(1000);
         webDriver.findElement(By.xpath(buttonSubmit)).click();
-        waitForLoadingIconDisappear();
+
         testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastSuccessMessage);
+        //testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastFileSuccessMessage);
         waitForLoadingIconDisappear();
 }
     public void editCompany() throws InterruptedException, IOException {
@@ -234,7 +241,7 @@ public class CompanyManagementFunctions extends BaseClass {
 
             Thread.sleep(1000);
             webDriver.findElement(By.xpath(buttonSubmit)).click();
-            waitForLoadingIconDisappear();
+
         testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastEditMessage);
         waitForLoadingIconDisappear();
     }

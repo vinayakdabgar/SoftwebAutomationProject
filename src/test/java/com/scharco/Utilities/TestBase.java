@@ -22,7 +22,7 @@ public class TestBase extends WebDriverTestBase {
     @Override
     public void expWait(String data)
     {
-        WebDriverWait wait = new WebDriverWait(webDriver,30);
+        WebDriverWait wait = new WebDriverWait(webDriver,40);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(data)));
     }
 

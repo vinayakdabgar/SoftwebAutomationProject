@@ -30,4 +30,5 @@ public class CompanyManagementData {
     public static final String updateMsgPerMonthPerDevice = "50";
     public static final String updateSageCompanyID = "142536";
     public static final String toastEditMessage = "Company updated successfully";
+    public static final String toastFileSuccessMessage = "Contact Files save successfully";
 }
