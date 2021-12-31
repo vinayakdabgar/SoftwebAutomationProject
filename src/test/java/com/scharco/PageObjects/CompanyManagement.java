@@ -20,13 +20,13 @@ public class CompanyManagement extends BaseClass {
         localDriver = remoteDriver;
         PageFactory.initElements(remoteDriver,this);
     }
-    @FindBy(xpath = "//span[contains(text(),'Select Country')]")
+    @FindBy(xpath = "//mat-select[@formcontrolname='countryId']")
     WebElement clickOnCountry;
 
-    @FindBy(xpath = "//span[contains(text(),'Enter State')]")
+    @FindBy(xpath = "//mat-select[@formcontrolname='stateId']")
     WebElement stateTextBox;
 
-    @FindBy(xpath = "//span[contains(text(),'Enter Market Segment')]")
+    @FindBy(xpath = "//mat-select[@formcontrolname='marketSegmentId']")
     WebElement marketSegmentTextBox;
 
     @FindBy(xpath = "//span[normalize-space()='Submit']")
@@ -65,7 +65,6 @@ public class CompanyManagement extends BaseClass {
     }
     public WebElement getClickOnSubmit()
     {
-
         return clickOnSubmit;
     }
     public WebElement getClickOnOKButtonDelete() {
@@ -78,5 +77,10 @@ public class CompanyManagement extends BaseClass {
     public void clickOnDeleteButton(String companyEmail)
     {
         webDriver.findElement(By.xpath("//td[contains(text(),\""+companyEmail+"\")]//ancestor::tr//following-sibling::td[7]//div//ul//li[3]//a")).click();
+    }
+
+    public void clickOnEditButton(String companyEmail)
+    {
+        webDriver.findElement(By.xpath("//td[contains(text(),\""+companyEmail+"\")]//ancestor::tr//following-sibling::td[7]//div//ul//li[2]//a")).click();
     }
 }

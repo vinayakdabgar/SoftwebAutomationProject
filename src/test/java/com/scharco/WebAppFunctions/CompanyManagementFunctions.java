@@ -125,6 +125,105 @@ public class CompanyManagementFunctions extends BaseClass {
         webDriver.findElement(By.xpath(buttonSubmit)).click();
         waitForLoadingIconDisappear();
 }
+    public void editCompany() throws InterruptedException, IOException {
+        CompanyManagement companyManagement = new CompanyManagement(webDriver);
+        for (WebElement emailData : companyManagement.getAllEmailColumn())
+        {
+            if(emailData.getText().contains(CompanyManagementData.companyEmail))
+            {
+                companyManagement.clickOnEditButton(CompanyManagementData.companyEmail);
+                Thread.sleep(2000);
+                break;
+            }
+        }
+
+            String listOfCountryName = propertiesRead.readProperties("country");
+            String listOfMarketName = propertiesRead.readProperties("market");
+            String buttonSubmit = propertiesRead.readProperties("clickOnSubmit");
+            String companyName = propertiesRead.readProperties("companyNameTextBox");
+            String companyContact= propertiesRead.readProperties("companyContactTextBox");
+            String address= propertiesRead.readProperties("addressTextBox");
+            String city= propertiesRead.readProperties("cityTextBox");
+            String noOfDevices= propertiesRead.readProperties("noOfDevicesTextBox");
+            String msgPerMonthPerDevice= propertiesRead.readProperties("msgPerMonthPerDeviceNameTextBox");
+            String sageCompanyID= propertiesRead.readProperties("sageIdTextBox");
+
+            webDriver.findElement(By.xpath(companyName)).click();
+            webDriver.findElement(By.xpath(companyName)).clear();
+            webDriver.findElement(By.xpath(companyName)).sendKeys(CompanyManagementData.updateCompanyName);
+
+
+            webDriver.findElement(By.xpath(companyContact)).click();
+            webDriver.findElement(By.xpath(companyContact)).clear();
+            webDriver.findElement(By.xpath(companyContact)).sendKeys(CompanyManagementData.updateCompanyContact);
+
+            webDriver.findElement(By.xpath(address)).click();
+            webDriver.findElement(By.xpath(address)).clear();
+            webDriver.findElement(By.xpath(address)).sendKeys(CompanyManagementData.updateAddress);
+
+            webDriver.findElement(By.xpath(city)).click();
+            webDriver.findElement(By.xpath(city)).clear();
+            webDriver.findElement(By.xpath(city)).sendKeys(CompanyManagementData.updateCity);
+
+            webDriver.findElement(By.xpath(noOfDevices)).click();
+            webDriver.findElement(By.xpath(noOfDevices)).clear();
+            webDriver.findElement(By.xpath(noOfDevices)).sendKeys(CompanyManagementData.updateNoOfDevices);
+
+            webDriver.findElement(By.xpath(msgPerMonthPerDevice)).click();
+            webDriver.findElement(By.xpath(msgPerMonthPerDevice)).clear();
+            webDriver.findElement(By.xpath(msgPerMonthPerDevice)).sendKeys(CompanyManagementData.updateMsgPerMonthPerDevice);
+
+
+            webDriver.findElement(By.xpath(sageCompanyID)).click();
+            webDriver.findElement(By.xpath(sageCompanyID)).clear();
+            webDriver.findElement(By.xpath(sageCompanyID)).sendKeys(CompanyManagementData.updateSageCompanyID);
+
+
+            companyManagement.getClickOnCountry().click();
+
+            companyManagement.selectCountry(CompanyManagementData.updateCountry);
+
+            List<WebElement> listOfCountry = webDriver.findElements(By.cssSelector(listOfCountryName));
+            int count = 1;
+            for(WebElement countryName : listOfCountry)
+            {
+                if(countryName.getText().equalsIgnoreCase(CompanyManagementData.updateCountry))
+                {
+                    String country1 = countryName.getText();
+                    Assert.assertEquals(country1, CompanyManagementData.updateCountry);
+                    count++;
+                } else {
+                    System.out.println("Sorry!! Something wrong..");
+                }
+            }
+            Thread.sleep(3000);
+            companyManagement.getStateTextBox().click();
+
+            companyManagement.selectStateFromDropdown("Farah");
+
+            companyManagement.getMarketSegmentTextBox().click();
+
+            companyManagement.selectMarketSegment(CompanyManagementData.updateMarketSegment);
+
+            List<WebElement> listOfMarket = webDriver.findElements(By.cssSelector(listOfMarketName));
+            int count2 = 1;
+            for(WebElement stateName : listOfMarket)
+            {
+                if(stateName.getText().equalsIgnoreCase(CompanyManagementData.updateMarketSegment))
+                {
+                    String market = stateName.getText();
+                    Assert.assertEquals(market, CompanyManagementData.updateMarketSegment);
+                    count2++;
+                } else {
+                    System.out.println("Sorry!! Something wrong..");
+                }
+            }
+
+            Thread.sleep(1000);
+            webDriver.findElement(By.xpath(buttonSubmit)).click();
+            waitForLoadingIconDisappear();
+    }
+
     public void deleteCompany() throws InterruptedException, IOException {
         CompanyManagement companyManagement = new CompanyManagement(webDriver);
         String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");

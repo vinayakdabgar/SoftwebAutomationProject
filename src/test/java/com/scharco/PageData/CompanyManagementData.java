@@ -19,5 +19,14 @@ public class CompanyManagementData {
     public static final String sageCompanyID = "102030";
     public static final String toastSuccessMessage = "";
     public static final String toastDeleteMessage = "";
-
+    public static final String updateCompanyName = "Genepool LTD";
+    public static final String updateCompanyContact = "123456789012";
+    public static final String updateAddress = "St john Main road";
+    public static final String updateCountry = "Afghanistan";
+    public static final String updateState = "Farah";
+    public static final String updateCity = "Bagdad";
+    public static final String updateMarketSegment = "Lifting platforms";
+    public static final String updateNoOfDevices = "50";
+    public static final String updateMsgPerMonthPerDevice = "50";
+    public static final String updateSageCompanyID = "142536";
 }

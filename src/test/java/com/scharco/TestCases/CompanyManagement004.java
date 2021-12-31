@@ -13,6 +13,7 @@ public class CompanyManagement004 extends BaseClass {
 
         CompanyManagementFunctions companyManagementFunctions = new CompanyManagementFunctions(webDriver);
         companyManagementFunctions.addCompany();
+        companyManagementFunctions.editCompany();
         companyManagementFunctions.deleteCompany();
     }
 }
