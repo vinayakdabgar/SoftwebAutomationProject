@@ -5,10 +5,12 @@ import com.scharco.PageData.OTAUpdatesPageData;
 import com.scharco.PageObjects.OTAUpdates;
 import com.scharco.Utilities.BaseClass;
 import com.scharco.Utilities.PropertiesRead;
+import com.scharco.Utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -16,6 +18,7 @@ public class OTAUpdatesFunctions extends BaseClass {
 
     WebDriver webDriver;
     PropertiesRead propertiesRead = new PropertiesRead();
+    TestBase testBase = new TestBase();
 
     public OTAUpdatesFunctions(WebDriver remoteDriver) {
         webDriver = remoteDriver;
@@ -33,6 +36,7 @@ public class OTAUpdatesFunctions extends BaseClass {
         String dropdownSelectDevice = propertiesRead.readProperties("selectDevice");
         String buttonSubmitOTA = propertiesRead.readProperties("submitButtonOTAUpdate");
         String menuFirmware = propertiesRead.readProperties("menuFirmwareManagement");
+        String toastMessage = propertiesRead.readProperties("toastMessage");
 
         webDriver.findElement(By.xpath(menuOTAUpdates)).click();
         waitForLoadingIconDisappear();
@@ -57,6 +61,7 @@ public class OTAUpdatesFunctions extends BaseClass {
         WebElement element = webDriver.findElement(By.xpath(buttonSubmitOTA));
         JavascriptExecutor executor = (JavascriptExecutor)webDriver;
         executor.executeScript("arguments[0].click();", element);
+        testBase.verifyToastMessage(toastMessage,OTAUpdatesPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
         webDriver.findElement(By.xpath(menuFirmware)).click();
         waitForLoadingIconDisappear();

@@ -1,13 +1,16 @@
 package com.scharco.WebAppFunctions;
 
 import com.scharco.PageData.FirmwareManagementPageData;
+import com.scharco.PageData.RoleManagementData;
 import com.scharco.PageObjects.FirmwareManagement;
 import com.scharco.Utilities.BaseClass;
 import com.scharco.Utilities.FileUpload;
 import com.scharco.Utilities.PropertiesRead;
+import com.scharco.Utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.io.IOException;
@@ -17,6 +20,7 @@ public class FirmwareManagementFunctions extends BaseClass {
 
     WebDriver webDriver;
     PropertiesRead propertiesRead = new PropertiesRead();
+    TestBase testBase = new TestBase();
 
     public FirmwareManagementFunctions(WebDriver remoteDriver) {
         webDriver = remoteDriver;
@@ -35,6 +39,7 @@ public class FirmwareManagementFunctions extends BaseClass {
         String textAreaHWDescription = propertiesRead.readProperties("hardwareDescription");
         String textAreaSWDescription = propertiesRead.readProperties("softwareDescription");
         String buttonSubmitFirmware = propertiesRead.readProperties("submitFirmwareButton");
+        String toastMessage = propertiesRead.readProperties("toastMessage");
 
         loginPageFunctions.loginFunction();
         webDriver.findElement(By.xpath(menuFirmware)).click();
@@ -56,6 +61,7 @@ public class FirmwareManagementFunctions extends BaseClass {
         webDriver.findElement(By.xpath(textAreaSWDescription)).sendKeys(FirmwareManagementPageData.softwareDescription);
 
         webDriver.findElement(By.xpath(buttonSubmitFirmware)).click();
+        testBase.verifyToastMessage(toastMessage,FirmwareManagementPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
         releaseSoftwareVersion();
     }
@@ -64,12 +70,14 @@ public class FirmwareManagementFunctions extends BaseClass {
 
         FirmwareManagement firmwareManagement = new FirmwareManagement(webDriver);
         String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
+        String toastMessage = propertiesRead.readProperties("toastMessage");
 
         firmwareManagement.clickOnSoftwareUpgradeDraft(FirmwareManagementPageData.firmwareName);
         waitForLoadingIconDisappear();
         firmwareManagement.clickOnReleaseSoftwareVersion(FirmwareManagementPageData.softwareVersion);
         waitForLoadingIconDisappear();
         webDriver.findElement(By.xpath(buttonOkDelete)).click();
+        testBase.verifyToastMessage(toastMessage,FirmwareManagementPageData.toastSuccessFirmwareSoftwarePublish);
         waitForLoadingIconDisappear();
     }
 
@@ -78,6 +86,7 @@ public class FirmwareManagementFunctions extends BaseClass {
         FirmwareManagement firmwareManagement = new FirmwareManagement(webDriver);
         String listOfFirmware = propertiesRead.readProperties("listOfFirmwareName");
         String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
+        String toastMessage = propertiesRead.readProperties("toastMessage");
 
         List<WebElement> listOfFirmwareName = webDriver.findElements(By.cssSelector(listOfFirmware));
         for(WebElement firmware : listOfFirmwareName)
@@ -90,5 +99,6 @@ public class FirmwareManagementFunctions extends BaseClass {
                 break;
             }
         }
+        testBase.verifyToastMessage(toastMessage,FirmwareManagementPageData.toastDeleteMessage);
     }
 }

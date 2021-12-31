@@ -10,4 +10,5 @@ public class FirmwareManagementPageData {
     public static final String deviceType = "Scharco Small Sewage Station";
     public static final String toastSuccessMessage = "Firmware created successfully";
     public static final String toastDeleteMessage = "Firmware deleted successfully";
+    public static final String toastSuccessFirmwareSoftwarePublish = "Firmware software version publish successfully";
 }

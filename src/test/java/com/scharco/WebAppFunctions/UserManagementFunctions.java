@@ -1,5 +1,6 @@
 package com.scharco.WebAppFunctions;
 
+import com.scharco.PageData.OTAUpdatesPageData;
 import com.scharco.PageData.UserManagementPageData;
 import com.scharco.PageObjects.UserManagement;
 import com.scharco.Utilities.BaseClass;
@@ -57,28 +58,25 @@ public class UserManagementFunctions extends BaseClass {
         WebElement element = userManagement.getClickOnSubmit();
         JavascriptExecutor executor = (JavascriptExecutor)webDriver;
         executor.executeScript("arguments[0].click();", element);
-        testBase.expWait(toastMessage);
-        String toastSuccessMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastSuccessMessage,UserManagementPageData.toastSuccessMessage);
+        testBase.verifyToastMessage(toastMessage, UserManagementPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
     }
 
     public void deleteUser() throws InterruptedException, IOException {
         UserManagement userManagement = new UserManagement(webDriver);
         String toastMessage = propertiesRead.readProperties("toastMessage");
+        String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
 
         for (WebElement emailData : userManagement.getAllEmailColumn())
         {
             if(emailData.getText().contains(UserManagementPageData.emailAddress))
             {
                 userManagement.clickOnDeleteButton(UserManagementPageData.emailAddress);
-                webDriver.findElement(By.xpath("//span[normalize-space()='OK']")).click();
+                webDriver.findElement(By.xpath(buttonOkDelete)).click();
                 Thread.sleep(2000);
                 break;
             }
         }
-        testBase.expWait(toastMessage);
-        String toastDeleteMessage = webDriver.findElement(By.xpath(toastMessage)).getText();
-        Assert.assertEquals(toastDeleteMessage,UserManagementPageData.toastDeleteMessage);
+        testBase.verifyToastMessage(toastMessage, UserManagementPageData.toastDeleteMessage);
     }
 }
