@@ -28,4 +28,13 @@ public class RoleManagement {
     {
         webDriver.findElement(By.xpath("//td[contains(text(),\""+roleName+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[2]//a")).click();
     }
+
+    public void clickOnRoleEditButton(String roleName)
+    {
+        webDriver.findElement(By.xpath("//td[contains(text(),\""+roleName+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[1]//a")).click();
+    }
+
+    public void selectPermissionCheckBox(String moduleName, String permissionType){
+        webDriver.findElement(By.xpath("//p[contains(text(),\""+moduleName+"\")]//parent::div//following-sibling::div//span[contains(text(),\""+permissionType+"\")]")).click();
+    }
 }

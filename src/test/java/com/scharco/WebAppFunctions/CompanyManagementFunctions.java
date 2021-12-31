@@ -2,6 +2,7 @@ package com.scharco.WebAppFunctions;
 
 import com.scharco.PageData.CompanyManagementData;
 import com.scharco.PageData.NotificationData;
+import com.scharco.PageData.RuleManagementData;
 import com.scharco.PageData.UserManagementPageData;
 import com.scharco.PageObjects.CompanyManagement;
 import com.scharco.PageObjects.UserManagement;
@@ -12,18 +13,22 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import com.scharco.Utilities.TestBase;
+import com.scharco.Utilities.FileUpload;
 
 import java.io.IOException;
 import java.util.List;
+import java.awt.*;
 
 public class CompanyManagementFunctions extends BaseClass {
 
     PropertiesRead propertiesRead = new PropertiesRead();
+    TestBase testBase = new TestBase();
 
     public CompanyManagementFunctions(WebDriver remoteDriver) {
         webDriver = remoteDriver;
     }
-    public void addCompany() throws InterruptedException, IOException {
+    public void addCompany() throws InterruptedException, IOException , AWTException{
         String listOfCountryName = propertiesRead.readProperties("country");
         String listOfMarketName = propertiesRead.readProperties("market");
         String buttonSubmit = propertiesRead.readProperties("clickOnSubmit");
@@ -42,7 +47,8 @@ public class CompanyManagementFunctions extends BaseClass {
         String msgPerMonthPerDevice= propertiesRead.readProperties("msgPerMonthPerDeviceNameTextBox");
         String totalMessage= propertiesRead.readProperties("msgTotalPerMonthTextBox");
         String sageCompanyID= propertiesRead.readProperties("sageIdTextBox");
-
+        String toastMessage = propertiesRead.readProperties("toastMessage");
+        String buttonBrowse = propertiesRead.readProperties("browseImageFile");
 
         loginPageFunctions.loginFunction();
         waitForLoadingIconDisappear();
@@ -120,13 +126,20 @@ public class CompanyManagementFunctions extends BaseClass {
                 System.out.println("Sorry!! Something wrong..");
             }
         }
+        webDriver.findElement(By.xpath(buttonBrowse)).click();
+        Thread.sleep(3000);
+        FileUpload fileUpload = new FileUpload();
+        fileUpload.imageUpload("CompanyLogo.jpeg");
 
         Thread.sleep(1000);
         webDriver.findElement(By.xpath(buttonSubmit)).click();
         waitForLoadingIconDisappear();
+        testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastSuccessMessage);
+        waitForLoadingIconDisappear();
 }
     public void editCompany() throws InterruptedException, IOException {
         CompanyManagement companyManagement = new CompanyManagement(webDriver);
+        String toastMessage = propertiesRead.readProperties("toastMessage");
         for (WebElement emailData : companyManagement.getAllEmailColumn())
         {
             if(emailData.getText().contains(CompanyManagementData.companyEmail))
@@ -222,10 +235,13 @@ public class CompanyManagementFunctions extends BaseClass {
             Thread.sleep(1000);
             webDriver.findElement(By.xpath(buttonSubmit)).click();
             waitForLoadingIconDisappear();
+        testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastEditMessage);
+        waitForLoadingIconDisappear();
     }
 
     public void deleteCompany() throws InterruptedException, IOException {
         CompanyManagement companyManagement = new CompanyManagement(webDriver);
+        String toastMessage = propertiesRead.readProperties("toastMessage");
         String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
 
         for (WebElement emailData : companyManagement.getAllEmailColumn())
@@ -238,5 +254,7 @@ public class CompanyManagementFunctions extends BaseClass {
                 break;
             }
         }
+        testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastDeleteMessage);
+        waitForLoadingIconDisappear();
     }
 }

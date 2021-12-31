@@ -12,4 +12,6 @@ public class RuleManagementData {
     public static final String ruleApply = "All Device";
     public static final String user = "Service Company";
     public static final String notificationType = "Email";
+    public static final String toastSuccessMessage = "Rule created successfully";
+    public static final String toastDeleteMessage = "Rule deleted successfully";
 }

@@ -2,6 +2,8 @@ package com.scharco.WebAppFunctions;
 
 
 import com.scharco.PageData.CompanyManagementData;
+import com.scharco.PageData.OTAUpdatesPageData;
+import com.scharco.PageData.UserManagementPageData;
 import com.scharco.PageObjects.CompanyManagement;
 import com.scharco.PageObjects.RuleManagement;
 import com.scharco.PageData.RuleManagementData;
@@ -11,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import com.scharco.Utilities.BaseClass;
 import com.scharco.Utilities.PropertiesRead;
+import com.scharco.Utilities.TestBase;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.List;
 public class RuleManagementFunctions extends BaseClass{
     WebDriver webDriver;
     PropertiesRead propertiesRead = new PropertiesRead();
+    TestBase testBase = new TestBase();
 
     public RuleManagementFunctions(WebDriver remoteDriver) {
         webDriver = remoteDriver;
@@ -37,6 +41,7 @@ public class RuleManagementFunctions extends BaseClass{
         String notification = propertiesRead.readProperties("notificationType");
         String submitButton =propertiesRead.readProperties("submitButtonRule");
         String ruleApply = propertiesRead.readProperties("ruleApply");
+        String toastMessage = propertiesRead.readProperties("toastMessage");
 
         LoginPageFunctions loginPageFunctions = new LoginPageFunctions(webDriver);
         RuleManagement ruleManagement = new RuleManagement(webDriver);
@@ -77,11 +82,14 @@ public class RuleManagementFunctions extends BaseClass{
         Thread.sleep(2000);
         webDriver.findElement(By.xpath(submitButton)).click();
         waitForLoadingIconDisappear();
+        testBase.verifyToastMessage(toastMessage, RuleManagementData.toastSuccessMessage);
+        waitForLoadingIconDisappear();
 
 
     }
     public void deleteRule() throws InterruptedException, IOException {
         RuleManagement ruleManagement = new RuleManagement(webDriver);
+        String toastMessage = propertiesRead.readProperties("toastMessage");
         String buttonOkDelete = propertiesRead.readProperties("OkButtonDeletePopup");
 
         for (WebElement ruleData : ruleManagement.getAllRuleName())
@@ -94,6 +102,7 @@ public class RuleManagementFunctions extends BaseClass{
                 break;
             }
         }
+        testBase.verifyToastMessage(toastMessage, RuleManagementData.toastDeleteMessage);
     }
 
 

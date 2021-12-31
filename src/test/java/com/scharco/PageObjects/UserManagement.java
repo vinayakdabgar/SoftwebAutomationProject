@@ -25,19 +25,19 @@ public class UserManagement extends BaseClass {
     @FindBy(xpath = "//span[@class='mat-button-wrapper']//span[contains(text(),'User')]")
     WebElement createNewUserButton;
 
-    @FindBy(xpath = "//input[@id='mat-input-1']")
+    @FindBy(xpath = "//input[@formcontrolname='firstName']")
     WebElement firstNameTextBox;
 
-    @FindBy(xpath = "//input[@id='mat-input-2']")
+    @FindBy(xpath = "//input[@formcontrolname='lastName']")
     WebElement lastNameTextBox;
 
-    @FindBy(xpath = "//input[@id='mat-input-3']")
+    @FindBy(xpath = "//input[@formcontrolname='emailAddress']")
     WebElement emailTextBox;
 
-    @FindBy(xpath = "//input[@id='mat-input-4']")
+    @FindBy(xpath = "//input[@formcontrolname='contactNumber']")
     WebElement contactTextBox;
 
-    @FindBy(xpath = "//span[@class='mat-select-placeholder mat-select-min-line ng-tns-c115-11 ng-star-inserted']")
+    @FindBy(xpath = "//mat-select[@formcontrolname='roleId']")
     WebElement clickOnUserRole;
 
     @FindBy(xpath = "//span[normalize-space()='Submit']")
@@ -60,6 +60,11 @@ public class UserManagement extends BaseClass {
     public void clickOnDeleteButton(String email)
     {
         webDriver.findElement(By.xpath("//span[contains(text(),\""+email+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[2]//a")).click();
+    }
+
+    public void clickOnEditButton(String email)
+    {
+        webDriver.findElement(By.xpath("//span[contains(text(),\""+email+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[1]//a")).click();
     }
 
     public WebElement getClickOnSubmit() {
