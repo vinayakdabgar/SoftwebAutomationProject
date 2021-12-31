@@ -34,6 +34,11 @@
                     <include name="TestCase007_DeleteFirmwareManagement"/>
                 </methods>
             </class>
+            <class name="com.scharco.TestCases.RuleManagement007">
+                <methods>
+                    <include name="TestCase007_RuleManagement"/>
+                </methods>
+            </class>
             <class name="com.scharco.TestCases.CompanyManagement004">
                 <methods>
                     <include name="TestCase004_CompanyManagement"/>
