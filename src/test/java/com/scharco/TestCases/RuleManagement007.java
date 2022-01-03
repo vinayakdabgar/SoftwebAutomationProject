@@ -9,13 +9,16 @@ import java.io.IOException;
 
 public class RuleManagement007 extends BaseClass {
 
-        @Test
-        public void TestCase007_RuleManagement() throws InterruptedException, IOException {
+    @Test(priority=1)
+    public void Verify_User_Can_New_Rule() throws InterruptedException, IOException {
+        RuleManagementFunctions ruleManagementFunctions = new RuleManagementFunctions(webDriver);
+        ruleManagementFunctions.addRule();
+    }
 
-            RuleManagementFunctions ruleManagementFunctions = new RuleManagementFunctions(webDriver);
-            ruleManagementFunctions.addRule();
-            ruleManagementFunctions.deleteRule();
-
+    @Test(priority=2)
+    public void Verify_User_Can_Delete_Rule() throws InterruptedException, IOException {
+        RuleManagementFunctions ruleManagementFunctions = new RuleManagementFunctions(webDriver);
+        ruleManagementFunctions.deleteRule();
         }
 
 }

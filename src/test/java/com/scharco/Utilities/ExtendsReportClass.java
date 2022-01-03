@@ -12,13 +12,13 @@ public class ExtendsReportClass extends BaseClass {
     {
         String reportPath = System.getProperty("user.dir")+"\\Reports\\TestReport.html";
         ExtentSparkReporter reporter = new ExtentSparkReporter(reportPath);
-        reporter.config().setReportName("Environment : Dev/UAT Server");
-        reporter.config().setDocumentTitle("Development Server-Test Results");
+        reporter.config().setReportName("Environment : Scharco QA Server");
+        reporter.config().setDocumentTitle("Scharco QA Server-Test Results");
         reporter.config().setTheme(Theme.STANDARD);
 
         exReports = new ExtentReports();
         exReports.attachReporter(reporter);
-        exReports.setSystemInfo("Environment", "Dev/UAT Server");
+        exReports.setSystemInfo("Environment", "Scharco QA Server");
         exReports.setSystemInfo("Test By", "Automation Team");
         return exReports;
     }

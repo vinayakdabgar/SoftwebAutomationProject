@@ -13,20 +13,20 @@ import java.io.IOException;
 public class FirmwareAndOTAUpdateTestCase006 extends BaseClass {
 
 
-    @Test
-    public void TestCase006_FirmwareManagement() throws InterruptedException, IOException, AWTException {
+    @Test(priority=1)
+    public void Verify_User_Can_Add_New_Firmware() throws InterruptedException, IOException, AWTException {
         FirmwareManagementFunctions firmwareManagementFunctions = new FirmwareManagementFunctions(webDriver);
         firmwareManagementFunctions.addNewFirmware();
     }
 
-    @Test
-    public void TestCase008_AddOTAUpdates() throws IOException, InterruptedException {
+    @Test(priority=2)
+    public void Verify_User_Can_Add_New_OTAUpdate() throws IOException, InterruptedException {
         OTAUpdatesFunctions otaUpdatesFunctions = new OTAUpdatesFunctions(webDriver);
         otaUpdatesFunctions.addOTAUpdates();
     }
 
-    @Test
-    public void TestCase007_DeleteFirmwareManagement() throws IOException, InterruptedException {
+    @Test(priority=3)
+    public void Verify_User_Can_Delete_Firmware() throws IOException, InterruptedException {
         FirmwareManagementFunctions firmwareManagementFunctions = new FirmwareManagementFunctions(webDriver);
         firmwareManagementFunctions.delFirmware();
     }

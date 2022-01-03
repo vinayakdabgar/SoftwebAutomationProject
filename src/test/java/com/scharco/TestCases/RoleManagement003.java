@@ -10,19 +10,19 @@ import java.io.IOException;
 public class RoleManagement003 extends BaseClass {
 
     @Test(priority=1)
-    public void TestCase001_AddRole() throws InterruptedException, IOException {
+    public void Verify_User_Can_Add_New_Role() throws InterruptedException, IOException {
         AddRoleFunctions addRoleFunctions = new AddRoleFunctions(webDriver);
         addRoleFunctions.createNewRuleWithAllPermission();
     }
 
     @Test(priority=2)
-    public void TestCase002_EditRole() throws InterruptedException, IOException {
+    public void Verify_User_Can_Edit_Role() throws InterruptedException, IOException {
         AddRoleFunctions addRoleFunctions = new AddRoleFunctions(webDriver);
         addRoleFunctions.editRole();
     }
 
     @Test(priority=3)
-    public void TestCase003_DeleteRole() throws InterruptedException, IOException {
+    public void Verify_User_Can_Delete_Role() throws InterruptedException, IOException {
         AddRoleFunctions addRoleFunctions = new AddRoleFunctions(webDriver);
         addRoleFunctions.deleteRole();
     }

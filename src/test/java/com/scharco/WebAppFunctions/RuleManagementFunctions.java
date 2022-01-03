@@ -74,14 +74,11 @@ public class RuleManagementFunctions extends BaseClass{
         Thread.sleep(2000);
         ruleManagement.selectCompany(RuleManagementData.company);
         Thread.sleep(2000);
-        //webDriver.findElement(By.cssSelector("input[id='mat-radio-8-input']")).click();
-        Thread.sleep(2000);
         webDriver.findElement(By.cssSelector(receipts)).click();
         Thread.sleep(2000);
         webDriver.findElement(By.cssSelector(notification)).click();
         Thread.sleep(2000);
         webDriver.findElement(By.xpath(submitButton)).click();
-        waitForLoadingIconDisappear();
         testBase.verifyToastMessage(toastMessage, RuleManagementData.toastSuccessMessage);
         waitForLoadingIconDisappear();
 

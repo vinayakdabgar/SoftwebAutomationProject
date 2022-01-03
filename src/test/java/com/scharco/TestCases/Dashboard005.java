@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Dashboard005 extends BaseClass {
 
     @Test
-    public void TestCase005_Dashboard() throws InterruptedException, IOException {
+    public void Verify_User_Can_Filter_The_Notification() throws InterruptedException, IOException {
         DashboardFunctions dashboardFunctions = new DashboardFunctions(webDriver);
         dashboardFunctions.viewAll();
     }

@@ -10,38 +10,41 @@
         <classes>
             <class name="com.scharco.TestCases.Dashboard005">
                 <methods>
-                    <include name="TestCase005_Dashboard"/>
+                    <include name="Verify_User_Can_Filter_The_Notification"/>
                 </methods>
             </class>
             <class name="com.scharco.TestCases.UserManagement002">
                 <methods>
-                    <include name="TestCase002_AddUser"/>
-                    <include name="TestCase003_EditUser"/>
-                    <include name="TestCase004_DeleteUser"/>
+                    <include name="Verify_User_Can_Add_New_User"/>
+                    <include name="Verify_User_Can_Edit_User"/>
+                    <include name="Verify_User_Can_Delete_User"/>
                 </methods>
             </class>
             <class name="com.scharco.TestCases.RoleManagement003">
                 <methods>
-                    <include name="TestCase001_AddRole"/>
-                    <include name="TestCase002_EditRole"/>
-                    <include name="TestCase003_DeleteRole"/>
-                </methods>
-            </class>
-            <class name="com.scharco.TestCases.FirmwareAndOTAUpdateTestCase006">
-                <methods>
-                    <include name="TestCase006_FirmwareManagement"/>
-                    <include name="TestCase008_AddOTAUpdates"/>
-                    <include name="TestCase007_DeleteFirmwareManagement"/>
-                </methods>
-            </class>
-            <class name="com.scharco.TestCases.RuleManagement007">
-                <methods>
-                    <include name="TestCase007_RuleManagement"/>
+                    <include name="Verify_User_Can_Add_New_Role"/>
+                    <include name="Verify_User_Can_Edit_Role"/>
+                    <include name="Verify_User_Can_Delete_Role"/>
                 </methods>
             </class>
             <class name="com.scharco.TestCases.CompanyManagement004">
                 <methods>
-                    <include name="TestCase004_CompanyManagement"/>
+                    <include name="Verify_User_Can_Add_Company"/>
+                    <include name="Verify_User_Can_Edit_Company"/>
+                    <include name="Verify_User_Can_Delete_Company"/>
+                </methods>
+            </class>
+            <class name="com.scharco.TestCases.RuleManagement007">
+                <methods>
+                    <include name="Verify_User_Can_New_Rule"/>
+                    <include name="Verify_User_Can_Delete_Rule"/>
+                </methods>
+            </class>
+            <class name="com.scharco.TestCases.FirmwareAndOTAUpdateTestCase006">
+                <methods>
+                    <include name="Verify_User_Can_Add_New_Firmware"/>
+                    <include name="Verify_User_Can_Add_New_OTAUpdate"/>
+                    <include name="Verify_User_Can_Delete_Firmware"/>
                 </methods>
             </class>
         </classes>
