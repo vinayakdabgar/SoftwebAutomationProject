@@ -20,6 +20,7 @@ public class ExtendsReportClass extends BaseClass {
         exReports.attachReporter(reporter);
         exReports.setSystemInfo("Environment", "Scharco QA Server");
         exReports.setSystemInfo("Test By", "Automation Team");
+        exReports.setSystemInfo("Selenium Version", "4.1.0");
         return exReports;
     }
 
