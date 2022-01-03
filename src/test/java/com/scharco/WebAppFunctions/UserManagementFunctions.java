@@ -32,29 +32,54 @@ public class UserManagementFunctions extends BaseClass {
 
         LoginPageFunctions loginPageFunctions = new LoginPageFunctions(webDriver);
         UserManagement userManagement = new UserManagement(webDriver);
+        String menuUserManagement = propertiesRead.readProperties("userManagementMenu");
+        String buttonCreateNewUser = propertiesRead.readProperties("createNewUserButton");
+        String textBoxFirstName = propertiesRead.readProperties("firstNameUserTextBox");
+        String textBoxLastName = propertiesRead.readProperties("lastNameUserTextBox");
+        String textBoxEmail = propertiesRead.readProperties("emailTextBox");
+        String textBoxContact = propertiesRead.readProperties("contactTextBox");
+        String dropdownSelectRole = propertiesRead.readProperties("clickOnUserRole");
+        String buttonSubmit = propertiesRead.readProperties("clickOnSubmit");
+
         String buttonBrowse = propertiesRead.readProperties("browseFile");
         String toastMessage = propertiesRead.readProperties("toastMessage");
+        String firstNameValidation = propertiesRead.readProperties("firstNameValidation");
+        String lastNameValidation = propertiesRead.readProperties("lastNameValidation");
+        String emailValidation = propertiesRead.readProperties("emailValidation");
+        String contactValidation = propertiesRead.readProperties("contactValidation");
+        String roleValidation = propertiesRead.readProperties("roleValidation");
 
         loginPageFunctions.loginFunction();
         waitForLoadingIconDisappear();
-        userManagement.getUserManagementMenu().click();
+        webDriver.findElement(By.xpath(menuUserManagement)).click();
         waitForLoadingIconDisappear();
-        userManagement.getCreateNewUserButton().click();
+        webDriver.findElement(By.xpath(buttonCreateNewUser)).click();
         waitForLoadingIconDisappear();
 
-        userManagement.getFirstNameTextBox().click();
-        userManagement.getFirstNameTextBox().sendKeys(UserManagementPageData.firstName);
+        /* Verify validations */
 
-        userManagement.getLastNameTextBox().click();
-        userManagement.getLastNameTextBox().sendKeys(UserManagementPageData.lastName);
+        WebElement submitButton = webDriver.findElement(By.xpath(buttonSubmit));
+        testBase.clickJavaScriptExecutor(submitButton);
+        String firstNameValidationText = webDriver.findElement(By.xpath(firstNameValidation)).getText();
+        Assert.assertEquals(firstNameValidationText,UserManagementPageData.expFirstNameValidation);
 
-        userManagement.getEmailTextBox().click();
-        userManagement.getEmailTextBox().sendKeys(UserManagementPageData.emailAddress);
+        String lastNameValidationText = webDriver.findElement(By.xpath(lastNameValidation)).getText();
+        Assert.assertEquals(lastNameValidationText,UserManagementPageData.expLastNameValidation);
 
-        userManagement.getContactTextBox().click();
-        userManagement.getContactTextBox().sendKeys(UserManagementPageData.contactNumber);
+        String emailValidationText = webDriver.findElement(By.xpath(emailValidation)).getText();
+        Assert.assertEquals(emailValidationText,UserManagementPageData.expEmailAddressValidation);
 
-        userManagement.getClickOnUserRole().click();
+        String contactValidationText = webDriver.findElement(By.xpath(contactValidation)).getText();
+        Assert.assertEquals(contactValidationText,UserManagementPageData.expContactNumberValidation);
+
+        String roleValidationText = webDriver.findElement(By.xpath(roleValidation)).getText();
+        Assert.assertEquals(roleValidationText,UserManagementPageData.expSelectRoleValidation);
+
+        webDriver.findElement(By.xpath(textBoxFirstName)).sendKeys(UserManagementPageData.firstName);
+        webDriver.findElement(By.xpath(textBoxLastName)).sendKeys(UserManagementPageData.lastName);
+        webDriver.findElement(By.xpath(textBoxEmail)).sendKeys(UserManagementPageData.emailAddress);
+        webDriver.findElement(By.xpath(textBoxContact)).sendKeys(UserManagementPageData.contactNumber);
+        webDriver.findElement(By.xpath(dropdownSelectRole)).click();
         userManagement.selectRole(UserManagementPageData.role);
 
         webDriver.findElement(By.xpath(buttonBrowse)).click();
@@ -63,9 +88,7 @@ public class UserManagementFunctions extends BaseClass {
         fileUpload.imageUpload("Dummy_Image.jpg");
 
         Thread.sleep(1000);
-        WebElement element = userManagement.getClickOnSubmit();
-        JavascriptExecutor executor = (JavascriptExecutor)webDriver;
-        executor.executeScript("arguments[0].click();", element);
+        testBase.clickJavaScriptExecutor(submitButton);
         testBase.verifyToastMessage(toastMessage, UserManagementPageData.toastSuccessMessage);
         waitForLoadingIconDisappear();
     }
@@ -73,27 +96,31 @@ public class UserManagementFunctions extends BaseClass {
     public void editUser() throws IOException, InterruptedException {
 
         UserManagement userManagement = new UserManagement(webDriver);
+        String textBoxFirstName = propertiesRead.readProperties("firstNameUserTextBox");
+        String textBoxLastName = propertiesRead.readProperties("lastNameUserTextBox");
+        String textBoxContact = propertiesRead.readProperties("contactTextBox");
+        String dropdownSelectRole = propertiesRead.readProperties("clickOnUserRole");
+        String buttonSubmit = propertiesRead.readProperties("clickOnSubmit");
         String toastMessage = propertiesRead.readProperties("toastMessage");
 
         userManagement.clickOnEditButton(UserManagementPageData.emailAddress);
         waitForLoadingIconDisappear();
 
-        userManagement.getFirstNameTextBox().clear();
-        userManagement.getFirstNameTextBox().sendKeys(UserManagementPageData.firstName + "HP");
+        webDriver.findElement(By.xpath(textBoxFirstName)).clear();
+        webDriver.findElement(By.xpath(textBoxFirstName)).sendKeys(UserManagementPageData.firstName + "HP");
 
-        userManagement.getLastNameTextBox().clear();
-        userManagement.getLastNameTextBox().sendKeys(UserManagementPageData.lastName + "PA");
+        webDriver.findElement(By.xpath(textBoxLastName)).clear();
+        webDriver.findElement(By.xpath(textBoxLastName)).sendKeys(UserManagementPageData.lastName + "PA");
 
-        userManagement.getContactTextBox().clear();
-        userManagement.getContactTextBox().sendKeys(UserManagementPageData.contactNumber + "94");
+        webDriver.findElement(By.xpath(textBoxContact)).clear();
+        webDriver.findElement(By.xpath(textBoxContact)).sendKeys(UserManagementPageData.contactNumber + "94");
 
-        userManagement.getClickOnUserRole().click();
+        webDriver.findElement(By.xpath(dropdownSelectRole)).click();
         userManagement.selectRole(UserManagementPageData.updateRole);
 
         Thread.sleep(1000);
-        WebElement element = userManagement.getClickOnSubmit();
-        JavascriptExecutor executor = (JavascriptExecutor)webDriver;
-        executor.executeScript("arguments[0].click();", element);
+        WebElement element = webDriver.findElement(By.xpath(buttonSubmit));
+        testBase.clickJavaScriptExecutor(element);
         testBase.verifyToastMessage(toastMessage, UserManagementPageData.toastUpdateMessage);
         waitForLoadingIconDisappear();
     }

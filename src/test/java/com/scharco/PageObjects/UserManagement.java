@@ -19,39 +19,8 @@ public class UserManagement extends BaseClass {
         PageFactory.initElements(remoteDriver,this);
     }
 
-    @FindBy(xpath = "//span[normalize-space()='User Management']")
-    WebElement userManagementMenu;
-
-    @FindBy(xpath = "//span[@class='mat-button-wrapper']//span[contains(text(),'User')]")
-    WebElement createNewUserButton;
-
-    @FindBy(xpath = "//input[@formcontrolname='firstName']")
-    WebElement firstNameTextBox;
-
-    @FindBy(xpath = "//input[@formcontrolname='lastName']")
-    WebElement lastNameTextBox;
-
-    @FindBy(xpath = "//input[@formcontrolname='emailAddress']")
-    WebElement emailTextBox;
-
-    @FindBy(xpath = "//input[@formcontrolname='contactNumber']")
-    WebElement contactTextBox;
-
-    @FindBy(xpath = "//mat-select[@formcontrolname='roleId']")
-    WebElement clickOnUserRole;
-
-    @FindBy(xpath = "//span[normalize-space()='Submit']")
-    WebElement clickOnSubmit;
-
     @FindBy(css = "[class*='cdk-column-emailAddress']")
     List<WebElement> allEmailColumn;
-
-    @FindBy(xpath = "//button[@class='mat-focus-indicator btn btn-orange mat-button mat-button-base']")
-    WebElement clickOnOKButtonDelete;
-
-    public WebElement getClickOnOKButtonDelete() {
-        return clickOnOKButtonDelete;
-    }
 
     public List<WebElement> getAllEmailColumn() {
         return allEmailColumn;
@@ -67,40 +36,8 @@ public class UserManagement extends BaseClass {
         webDriver.findElement(By.xpath("//span[contains(text(),\""+email+"\")]//ancestor::td//following-sibling::td[5]//div//ul//li[1]//a")).click();
     }
 
-    public WebElement getClickOnSubmit() {
-        return clickOnSubmit;
-    }
-
     public void selectRole(String role)
     {
         localDriver.findElement(By.xpath("//span[normalize-space()=\""+role+"\"]")).click();
-    }
-
-    public WebElement getClickOnUserRole() {
-        return clickOnUserRole;
-    }
-
-    public WebElement getContactTextBox() {
-        return contactTextBox;
-    }
-
-    public WebElement getEmailTextBox() {
-        return emailTextBox;
-    }
-
-    public WebElement getLastNameTextBox() {
-        return lastNameTextBox;
-    }
-
-    public WebElement getFirstNameTextBox() {
-        return firstNameTextBox;
-    }
-
-    public WebElement getCreateNewUserButton() {
-        return createNewUserButton;
-    }
-
-    public WebElement getUserManagementMenu() {
-        return userManagementMenu;
     }
 }

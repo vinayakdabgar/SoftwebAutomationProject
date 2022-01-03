@@ -32,4 +32,10 @@ public class TestBase extends WebDriverTestBase {
         String actualToastMessage = webDriver.findElement(By.xpath(actualToastMessageXpath)).getText();
         Assert.assertEquals(actualToastMessage, expToastMessage);
     }
+
+    @Override
+    public void clickJavaScriptExecutor(WebElement element){
+        JavascriptExecutor executor = (JavascriptExecutor)webDriver;
+        executor.executeScript("arguments[0].click();", element);
+    }
 }

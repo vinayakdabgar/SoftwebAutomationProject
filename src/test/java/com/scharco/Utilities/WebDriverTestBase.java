@@ -14,4 +14,6 @@ public abstract class WebDriverTestBase {
     public abstract void expWait(String data);
 
     public abstract void verifyToastMessage(String actualToastMessageXpath, String expToastMessage);
+
+    public abstract void clickJavaScriptExecutor(WebElement element);
 }
