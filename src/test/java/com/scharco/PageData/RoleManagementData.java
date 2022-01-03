@@ -8,4 +8,9 @@ public class RoleManagementData {
     public static final String toastDeleteMessage = "Role deleted successfully";
     public static final String toastUpdateMessage = "Role updated successfully";
 
+    /* Validation Data */
+
+    public static final String expRoleNameValidation = "Please enter Role Name";
+    public static final String expPermissionValidation = "Please select atleast one permission";
+
 }

@@ -30,6 +30,7 @@ public class AddRoleFunctions extends BaseClass {
         String menuRoleManagement = propertiesRead.readProperties("menuRoleManagement");
         String buttonCreateNewRole = propertiesRead.readProperties("createNewRole");
         String textBoxRoleName = propertiesRead.readProperties("roleName");
+        String roleNameValidation = propertiesRead.readProperties("roleNameValidation");
         String textBoxRoleDescription = propertiesRead.readProperties("roleDescription");
         String selectAllCheckBox = propertiesRead.readProperties("selectAllCheckBox");
         String buttonSubmit = propertiesRead.readProperties("submitButton");
@@ -41,6 +42,14 @@ public class AddRoleFunctions extends BaseClass {
         waitForLoadingIconDisappear();
         webDriver.findElement(By.xpath(buttonCreateNewRole)).click();
         waitForLoadingIconDisappear();
+
+        /* Role Validation */
+        webDriver.findElement(By.xpath(buttonSubmit)).click();
+        String roleNameValidationText = webDriver.findElement(By.xpath(roleNameValidation)).getText();
+        Assert.assertEquals(roleNameValidationText,RoleManagementData.expRoleNameValidation);
+        testBase.verifyToastMessage(toastMessage,RoleManagementData.expPermissionValidation);
+        Thread.sleep(3000);
+
         webDriver.findElement(By.xpath(textBoxRoleName)).sendKeys(RoleManagementData.roleName);
         webDriver.findElement(By.xpath(textBoxRoleDescription)).sendKeys(RoleManagementData.roleDescription);
         webDriver.findElement(By.xpath(selectAllCheckBox)).click();
