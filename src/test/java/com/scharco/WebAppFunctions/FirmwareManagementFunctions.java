@@ -40,12 +40,35 @@ public class FirmwareManagementFunctions extends BaseClass {
         String textAreaSWDescription = propertiesRead.readProperties("softwareDescription");
         String buttonSubmitFirmware = propertiesRead.readProperties("submitFirmwareButton");
         String toastMessage = propertiesRead.readProperties("toastMessage");
+        String firmwareNameValidation = propertiesRead.readProperties("firmwareNameValidation");
+        String deviceTypeValidation = propertiesRead.readProperties("deviceTypeValidation");
+        String hardwareVersionValidation = propertiesRead.readProperties("hardwareVersionValidation");
+        String softwareVersionValidation = propertiesRead.readProperties("softwareVersionValidation");
+        String firmwareFileValidation = propertiesRead.readProperties("firmwareFileValidation");
 
         loginPageFunctions.loginFunction();
         webDriver.findElement(By.xpath(menuFirmware)).click();
         waitForLoadingIconDisappear();
         webDriver.findElement(By.xpath(addNewFirmware)).click();
         waitForLoadingIconDisappear();
+
+        /* Validation Data */
+        webDriver.findElement(By.xpath(buttonSubmitFirmware)).click();
+        String firmwareNameValidationText = webDriver.findElement(By.xpath(firmwareNameValidation)).getText();
+        Assert.assertEquals(firmwareNameValidationText,FirmwareManagementPageData.expFirmwareNameValidation);
+
+        String deviceTypeValidationText = webDriver.findElement(By.xpath(deviceTypeValidation)).getText();
+        Assert.assertEquals(deviceTypeValidationText,FirmwareManagementPageData.expDeviceTypeValidation);
+
+        String hardwareVersionValidationText = webDriver.findElement(By.xpath(hardwareVersionValidation)).getText();
+        Assert.assertEquals(hardwareVersionValidationText,FirmwareManagementPageData.expHardwareVersionValidation);
+
+        String softwareVersionValidationText = webDriver.findElement(By.xpath(softwareVersionValidation)).getText();
+        Assert.assertEquals(softwareVersionValidationText,FirmwareManagementPageData.expSoftwareVersionValidation);
+
+        String firmwareFileValidationText = webDriver.findElement(By.xpath(firmwareFileValidation)).getText();
+        Assert.assertEquals(firmwareFileValidationText,FirmwareManagementPageData.expFirmwareFileValidation);
+
         webDriver.findElement(By.xpath(textBoxFirmwareName)).sendKeys(FirmwareManagementPageData.firmwareName);
         webDriver.findElement(By.xpath(dropdownDeviceType)).click();
         firmwareManagement.selectDeviceTypeFromDropdown(FirmwareManagementPageData.deviceType);

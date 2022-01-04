@@ -36,8 +36,7 @@ public class LoginPageFunctions extends BaseClass {
         webDriver.findElement(By.xpath(textBoxEmailAddress)).sendKeys(adminUserId);
         webDriver.findElement(By.xpath(textBoxPassword)).sendKeys(adminPassword);
         WebElement element = webDriver.findElement(By.xpath(buttonLogin));
-        JavascriptExecutor executor = (JavascriptExecutor)webDriver;
-        executor.executeScript("arguments[0].click();", element);
+        testBase.clickJavaScriptExecutor(element);
         testBase.expWait(toggleDropdown);
     }
 

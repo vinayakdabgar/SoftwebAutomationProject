@@ -132,16 +132,10 @@ public class CompanyManagementFunctions extends BaseClass {
         FileUpload fileUpload = new FileUpload();
         fileUpload.imageUpload("CompanyLogo.jpg");
 
-//        webDriver.findElement(By.xpath(buttonBrowse2)).click();
-//        Thread.sleep(3000);
-//        FileUpload fileUpload1 = new FileUpload();
-//        fileUpload1.imageUpload("CompanyTxt.txt");
-
         Thread.sleep(1000);
         webDriver.findElement(By.xpath(buttonSubmit)).click();
 
         testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastSuccessMessage);
-        //testBase.verifyToastMessage(toastMessage, CompanyManagementData.toastFileSuccessMessage);
         waitForLoadingIconDisappear();
 }
     public void editCompany() throws InterruptedException, IOException {

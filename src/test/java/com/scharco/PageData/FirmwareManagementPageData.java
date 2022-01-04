@@ -11,4 +11,12 @@ public class FirmwareManagementPageData {
     public static final String toastSuccessMessage = "Firmware created successfully";
     public static final String toastDeleteMessage = "Firmware deleted successfully";
     public static final String toastSuccessFirmwareSoftwarePublish = "Firmware software version publish successfully";
+
+    /* Validation Data */
+
+    public static final String expFirmwareNameValidation = "Please enter Name";
+    public static final String expDeviceTypeValidation = "Please enter Device Type";
+    public static final String expHardwareVersionValidation = "Please enter Hardware Version";
+    public static final String expSoftwareVersionValidation = "Please enter Software Version";
+    public static final String expFirmwareFileValidation = "Please select Firmware File";
 }
