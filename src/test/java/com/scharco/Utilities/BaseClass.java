@@ -6,6 +6,8 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -25,11 +27,21 @@ public class BaseClass {
 
         PropertiesRead propertiesRead = new PropertiesRead();
         String url = propertiesRead.readProperties("URL");
+        String browser = propertiesRead.readProperties("Browser");
 
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("start-maximized");
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver(chromeOptions);
+        if (browser.equalsIgnoreCase("Chrome")) {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("start-maximized");
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver(chromeOptions);
+        }
+        else if (browser.equalsIgnoreCase("Edge"))
+        {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            edgeOptions.addArguments("start-maximized");
+            WebDriverManager.edgedriver().setup();
+            webDriver = new EdgeDriver(edgeOptions);
+        }
         webDriver.get(url);
     }
 
