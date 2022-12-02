@@ -33,6 +33,7 @@ public class BaseClass {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("start-maximized");
             WebDriverManager.chromedriver().setup();
+            
             webDriver = new ChromeDriver(chromeOptions);
         }
         else if (browser.equalsIgnoreCase("Edge"))
